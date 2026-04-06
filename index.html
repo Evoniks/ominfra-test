@@ -83,9 +83,9 @@
       color: #fff;
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 40;
       border-bottom: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
     }
 
     .nav-inner {
@@ -116,7 +116,7 @@
 
     .nav-links {
       display: flex;
-      gap: 24px;
+      gap: 20px;
       flex-wrap: wrap;
       align-items: center;
       margin-left: auto;
@@ -127,6 +127,7 @@
       color: rgba(255,255,255,0.92);
       font-size: 15px;
       font-weight: 600;
+      transition: color 0.2s ease, opacity 0.2s ease;
     }
 
     .nav-links a:hover {
@@ -140,18 +141,20 @@
       font-weight: 700;
       padding: 12px 18px;
       border-radius: 999px;
-      transition: transform 0.15s ease;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 20px rgba(200, 168, 107, 0.18);
     }
 
     .cta-button:hover {
       transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(200, 168, 107, 0.22);
     }
 
     .lang-switcher {
       position: relative;
       display: flex;
       align-items: center;
-      margin-left: 12px;
+      margin-left: 8px;
       order: 99;
     }
 
@@ -167,10 +170,15 @@
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      min-width: 170px;
+      min-width: 175px;
       justify-content: space-between;
-      transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
     }
 
     .lang-dropdown-toggle:hover {
@@ -182,6 +190,28 @@
       outline: none;
       border-color: rgba(200,168,107,0.95);
       box-shadow: 0 0 0 3px rgba(200,168,107,0.18);
+    }
+
+    .lang-toggle-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .lang-flag {
+      font-size: 15px;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+    }
+
+    .lang-current-label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .lang-dropdown-toggle svg {
@@ -200,47 +230,52 @@
       position: absolute;
       top: calc(100% + 12px);
       right: 0;
-      min-width: 240px;
-
+      min-width: 250px;
       background: linear-gradient(
         135deg,
         rgba(20, 32, 51, 0.96),
         rgba(15, 23, 42, 0.96)
       );
-
       color: #ffffff;
-
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 18px;
-
       box-shadow:
         0 20px 60px rgba(0, 0, 0, 0.45),
         inset 0 1px 0 rgba(255,255,255,0.04);
-
       padding: 10px;
-      display: none;
-      z-index: 30;
-
+      z-index: 50;
       backdrop-filter: blur(12px);
+
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+      pointer-events: none;
+      transition:
+        opacity 0.18s ease,
+        transform 0.18s ease;
     }
 
     .lang-switcher.open .lang-dropdown-menu {
-      display: block;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
     }
 
     .lang-option {
       width: 100%;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       text-align: left;
       background: transparent;
       color: #ffffff;
       border: 0;
-      border-radius: 12px;
-      padding: 11px 12px;
+      border-radius: 14px;
+      padding: 12px 12px;
       cursor: pointer;
-      transition: background 0.15s ease, color 0.15s ease;
+      transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        transform 0.15s ease;
     }
 
     .lang-option:hover {
@@ -268,7 +303,8 @@
     }
 
     .lang-option.active .lang-bullet {
-      background: var(--accent);
+      background: #c8a86b;
+      transform: scale(1.2);
     }
 
     .lang-option-label {
@@ -336,6 +372,12 @@
       padding: 12px 18px;
       border-radius: 999px;
       font-weight: 700;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .button-secondary:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.32);
     }
 
     .hero-points {
@@ -558,6 +600,20 @@
       flex-wrap: wrap;
     }
 
+    @media (max-width: 1080px) {
+      .nav-links {
+        gap: 16px;
+      }
+
+      .nav-links a {
+        font-size: 14px;
+      }
+
+      .lang-dropdown-toggle {
+        min-width: 160px;
+      }
+    }
+
     @media (max-width: 980px) {
       .hero-grid,
       .about-grid,
@@ -665,7 +721,10 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <span id="currentLanguageLabel">Norsk Bokmål</span>
+            <span class="lang-toggle-left">
+              <span class="lang-flag" id="currentLanguageFlag">🇳🇴</span>
+              <span class="lang-current-label" id="currentLanguageLabel">Norsk Bokmål</span>
+            </span>
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
@@ -673,6 +732,7 @@
 
           <div class="lang-dropdown-menu" id="langMenu" role="menu">
             <button type="button" class="lang-option active" data-lang="no" role="menuitem">
+              <span class="lang-flag">🇳🇴</span>
               <span class="lang-bullet"></span>
               <span class="lang-option-label">
                 Norsk Bokmål
@@ -681,6 +741,7 @@
             </button>
 
             <button type="button" class="lang-option" data-lang="nn" role="menuitem">
+              <span class="lang-flag">🇳🇴</span>
               <span class="lang-bullet"></span>
               <span class="lang-option-label">
                 Norsk Nynorsk
@@ -689,6 +750,7 @@
             </button>
 
             <button type="button" class="lang-option" data-lang="en" role="menuitem">
+              <span class="lang-flag">🇬🇧</span>
               <span class="lang-bullet"></span>
               <span class="lang-option-label">
                 English
@@ -903,11 +965,16 @@
   </footer>
 
   <script>
+    const languageMeta = {
+      no: { label: "Norsk Bokmål", flag: "🇳🇴" },
+      nn: { label: "Norsk Nynorsk", flag: "🇳🇴" },
+      en: { label: "English", flag: "🇬🇧" }
+    };
+
     const translations = {
       no: {
         pageTitle: "OMinfra | Digital rådgivning for veg og VA",
         pageDescription: "OMinfra tilbyr digital rådgivning, kontroll, dokumentasjon og smarte løsninger innen veg og VA.",
-        languageLabel: "Norsk Bokmål",
         location: "Ålesund",
         topbarTagline: "Digital rådgivning for veg og VA",
         brandSubtitle: "Osdal & Moldskred Infrastruktur",
@@ -984,7 +1051,6 @@
       nn: {
         pageTitle: "OMinfra | Digital rådgiving for veg og VA",
         pageDescription: "OMinfra tilbyr digital rådgiving, kontroll, dokumentasjon og smarte løysingar innan veg og VA.",
-        languageLabel: "Norsk Nynorsk",
         location: "Ålesund",
         topbarTagline: "Digital rådgiving for veg og VA",
         brandSubtitle: "Osdal & Moldskred Infrastruktur",
@@ -1061,7 +1127,6 @@
       en: {
         pageTitle: "OMinfra | Digital consulting for roads and water infrastructure",
         pageDescription: "OMinfra provides digital consulting, control, documentation and smart solutions for road and water infrastructure projects.",
-        languageLabel: "English",
         location: "Ålesund",
         topbarTagline: "Digital consulting for roads and water infrastructure",
         brandSubtitle: "Osdal & Moldskred Infrastructure",
@@ -1138,13 +1203,14 @@
 
     const langSwitcher = document.getElementById("langSwitcher");
     const langToggle = document.getElementById("langToggle");
-    const langMenu = document.getElementById("langMenu");
     const currentLanguageLabel = document.getElementById("currentLanguageLabel");
+    const currentLanguageFlag = document.getElementById("currentLanguageFlag");
     const langOptions = document.querySelectorAll(".lang-option");
 
     function setLanguage(lang) {
       const dictionary = translations[lang];
-      if (!dictionary) return;
+      const meta = languageMeta[lang];
+      if (!dictionary || !meta) return;
 
       document.documentElement.lang = lang;
       document.title = dictionary.pageTitle;
@@ -1159,7 +1225,8 @@
         }
       });
 
-      currentLanguageLabel.textContent = dictionary.languageLabel;
+      currentLanguageLabel.textContent = meta.label;
+      currentLanguageFlag.textContent = meta.flag;
 
       langOptions.forEach((option) => {
         option.classList.toggle("active", option.dataset.lang === lang);
