@@ -96,6 +96,7 @@
       display: flex;
       flex-direction: column;
       gap: 3px;
+      flex-shrink: 0;
     }
 
     .brand-title {
@@ -114,33 +115,43 @@
       gap: 24px;
       flex-wrap: wrap;
       align-items: center;
+      margin-left: auto;
+      justify-content: flex-end;
     }
 
-    .nav-links a,
-    .nav-links button {
+    .nav-links a {
       color: rgba(255,255,255,0.92);
       font-size: 15px;
       font-weight: 600;
-      background: none;
-      border: 0;
-      cursor: pointer;
-      padding: 0;
-      font-family: inherit;
     }
 
-    .nav-links a:hover,
-    .nav-links button:hover {
+    .nav-links a:hover {
       color: #fff;
     }
 
     .lang-switcher {
       display: flex;
-      gap: 14px;
       align-items: center;
+      margin-left: 12px;
+      order: 99;
     }
 
-    .lang-btn.active {
-      color: var(--accent);
+    .lang-switcher select {
+      background: rgba(255,255,255,0.10);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+      min-width: 150px;
+    }
+
+    .lang-switcher select option {
+      color: #111827;
     }
 
     .cta-button {
@@ -148,7 +159,7 @@
       background: var(--accent);
       color: #111827 !important;
       font-weight: 700;
-      padding: 12px 18px !important;
+      padding: 12px 18px;
       border-radius: 999px;
       transition: transform 0.15s ease;
     }
@@ -451,6 +462,13 @@
 
       .nav-links {
         gap: 16px;
+        margin-left: 0;
+        justify-content: flex-start;
+      }
+
+      .lang-switcher {
+        margin-left: 0;
+        order: 0;
       }
     }
 
@@ -481,6 +499,10 @@
       .stats-grid {
         grid-template-columns: 1fr;
       }
+
+      .lang-switcher select {
+        min-width: 100%;
+      }
     }
   </style>
 </head>
@@ -506,17 +528,19 @@
       </div>
 
       <div class="nav-links">
-        <div class="lang-switcher">
-          <button class="lang-btn active" data-lang="no">NO</button>
-          <button class="lang-btn" data-lang="nn">NN</button>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
-
         <a href="#tjenester" data-i18n="navServices">Tjenester</a>
         <a href="#om-oss" data-i18n="navAbout">Om oss</a>
         <a href="#arbeidsform" data-i18n="navApproach">Arbeidsform</a>
         <a href="#kontakt" data-i18n="navContact">Kontakt</a>
         <a class="cta-button" href="#kontakt" data-i18n="navCta">Ta kontakt</a>
+
+        <div class="lang-switcher">
+          <select id="languageSelect" aria-label="Velg språk">
+            <option value="no">Norsk Bokmål</option>
+            <option value="nn">Norsk Nynorsk</option>
+            <option value="en">English</option>
+          </select>
+        </div>
       </div>
     </div>
   </nav>
@@ -525,11 +549,9 @@
     <div class="container hero-grid">
       <div>
         <span class="eyebrow" data-i18n="eyebrow">Veg · VA · Kontroll · Dokumentasjon · Smarte løsninger</span>
-        <h1 data-i18n="heroTitle">Digital støtte for bedre beslutninger innen infrastruktur</h1>
+        <h1 data-i18n="heroTitle">Digital rådgivning og kontroll for veg- og VA-prosjekter</h1>
         <p data-i18n="heroText">
-          OMinfra bistår med digital rådgivning, kontroll, kvalitetssikring og
-          strukturering av informasjon innen veg og VA. Målet er enklere arbeidsflyt,
-          bedre oversikt og løsninger som faktisk fungerer i praksis.
+          OMinfra hjelper aktører innen veg og VA med kontroll, kvalitetssikring, dokumentstruktur og smartere arbeidsflyt. Vi kombinerer fagforståelse med digitale arbeidsmetoder som gir bedre oversikt, mindre manuelt arbeid og mer presise leveranser.
         </p>
 
         <div class="hero-actions">
@@ -570,8 +592,7 @@
       <div class="section-header">
         <h2 data-i18n="servicesTitle">Tjenester</h2>
         <p data-i18n="servicesIntro">
-          Vi ønsker å fylle gapet mellom klassisk rådgivning, praktisk bransjeforståelse
-          og smartere digitale arbeidsmåter for infrastrukturprosjekter.
+          Vi leverer støtte der prosjekter trenger mer kontroll, bedre struktur og mer effektive digitale arbeidsmåter innen veg og VA.
         </p>
       </div>
 
@@ -580,26 +601,23 @@
           <div class="card-number">01</div>
           <h3 data-i18n="service1Title">Digital rådgivning</h3>
           <p data-i18n="service1Text">
-            Faglig støtte og vurderinger innen veg og VA, med fokus på gjennomførbare
-            løsninger og bedre beslutningsgrunnlag.
+            Faglig støtte og vurderinger innen veg og VA, med fokus på tydelige anbefalinger, bedre beslutningsgrunnlag og løsninger som lar seg gjennomføre i praksis.
           </p>
         </article>
 
         <article class="card">
           <div class="card-number">02</div>
-          <h3 data-i18n="service2Title">Kontroll og kvalitet</h3>
+          <h3 data-i18n="service2Title">Kontroll og kvalitetssikring</h3>
           <p data-i18n="service2Text">
-            Kontroll av dokumentasjon, struktur, underlag og leveranser for å fange opp
-            uklarheter, mangler og forbedringspunkter tidlig.
+            Gjennomgang av dokumentasjon, underlag og leveranser for å avdekke uklarheter, redusere feil og styrke kvaliteten tidlig i prosessen.
           </p>
         </article>
 
         <article class="card">
           <div class="card-number">03</div>
-          <h3 data-i18n="service3Title">Smarte arbeidsprosesser</h3>
+          <h3 data-i18n="service3Title">Effektiv arbeidsflyt</h3>
           <p data-i18n="service3Text">
-            Utvikling og forbedring av enkle digitale løsninger, rutiner og systemer som
-            gjør arbeidshverdagen mer effektiv.
+            Forbedring av rutiner, struktur og digitale oppsett som reduserer manuelt arbeid og gjør prosjekthverdagen mer oversiktlig og effektiv.
           </p>
         </article>
       </div>
@@ -611,19 +629,15 @@
       <div class="section-header">
         <h2 data-i18n="aboutTitle">Om OMinfra</h2>
         <p data-i18n="aboutIntro">
-          OMinfra er bygget rundt ideen om at mye verdifullt arbeid innen infrastruktur
-          kan gjøres smartere, mer strukturert og mer effektivt digitalt.
+          OMinfra er utviklet for å levere digital støtte til infrastrukturprosjekter der kontroll, struktur og faglig oversikt er avgjørende.
         </p>
       </div>
 
       <div class="about-grid">
         <div class="about-panel">
-          <h3 data-i18n="aboutPanelTitle">Bransjeforståelse kombinert med digitale muligheter</h3>
+          <h3 data-i18n="aboutPanelTitle">Fagforståelse kombinert med digitale arbeidsmetoder</h3>
           <p data-i18n="aboutPanelText">
-            Vi ser for oss en nisje der man kan bidra som rådgiver, kontrollør,
-            kvalitetssikrer og problemløser for aktører innen veg og VA — uten at alt
-            må løses ute i felt. Mange oppgaver kan gjøres godt fra PC, så lenge man
-            forstår både faget og behovene i praksis.
+            Vi jobber i skjæringspunktet mellom rådgivning, kontroll og digital forbedring for aktører innen veg og VA. Mange oppgaver kan løses effektivt fra PC, så lenge arbeidet bygger på reell fagforståelse, struktur og innsikt i hvordan prosjekter faktisk gjennomføres.
           </p>
 
           <ul class="check-list">
@@ -661,11 +675,9 @@
   <section id="arbeidsform" class="projects">
     <div class="container">
       <div class="section-header">
-        <h2 data-i18n="approachTitle">Hvordan vi tenker</h2>
+        <h2 data-i18n="approachTitle">Hvordan vi jobber</h2>
         <p data-i18n="approachIntro">
-          Vi ønsker å jobbe i skjæringspunktet mellom rådgivning, kontroll og digital
-          forbedring — særlig der dagens løsninger er for tunge, for uklare eller
-          rett og slett ikke gode nok.
+          Vi går inn der prosjekter trenger tydeligere struktur, bedre kontroll og smartere digitale arbeidsmåter — særlig når dagens løsninger er tunge, uklare eller for lite effektive.
         </p>
       </div>
 
@@ -674,8 +686,7 @@
           <span class="project-meta" data-i18n="approachMeta">Arbeidsområde</span>
           <h3 data-i18n="approach1Title">Dokumentasjon og struktur</h3>
           <p data-i18n="approach1Text">
-            Rydding, gjennomgang og oppsett av underlag slik at informasjon blir enklere
-            å forstå, kontrollere og bruke videre i prosjektet.
+            Rydding, gjennomgang og oppsett av underlag slik at informasjon blir enklere å forstå, kontrollere og bruke videre i prosjektet.
           </p>
         </article>
 
@@ -683,8 +694,7 @@
           <span class="project-meta" data-i18n="approachMeta">Arbeidsområde</span>
           <h3 data-i18n="approach2Title">Faglig støtte og kontroll</h3>
           <p data-i18n="approach2Text">
-            Bidrag i rollen som sparringspartner, kontrollør eller ekstra kapasitet når
-            prosjekter trenger mer oversikt og kvalitet i leveransen.
+            Bidrag i rollen som sparringspartner, kontrollør eller ekstra kapasitet når prosjekter trenger mer oversikt og kvalitet i leveransen.
           </p>
         </article>
 
@@ -692,8 +702,7 @@
           <span class="project-meta" data-i18n="approachMeta">Arbeidsområde</span>
           <h3 data-i18n="approach3Title">Bedre digitale løsninger</h3>
           <p data-i18n="approach3Text">
-            Identifisering av arbeidsoppgaver som kan forenkles med smarte verktøy,
-            bedre rutiner eller spesialtilpassede oppsett.
+            Identifisering av arbeidsoppgaver som kan forenkles med smarte verktøy, bedre rutiner eller spesialtilpassede oppsett.
           </p>
         </article>
       </div>
@@ -705,8 +714,7 @@
       <div class="section-header">
         <h2 data-i18n="contactTitle">Kontakt</h2>
         <p data-i18n="contactIntro">
-          Ta kontakt dersom du vil diskutere en idé, et behov eller et område der
-          dagens arbeidsmetode kan forbedres.
+          Ta kontakt dersom du trenger støtte til kontroll, kvalitetssikring, dokumentstruktur eller forbedring av arbeidsflyt innen veg og VA.
         </p>
       </div>
 
@@ -752,8 +760,8 @@
         navContact: "Kontakt",
         navCta: "Ta kontakt",
         eyebrow: "Veg · VA · Kontroll · Dokumentasjon · Smarte løsninger",
-        heroTitle: "Digital støtte for bedre beslutninger innen infrastruktur",
-        heroText: "OMinfra bistår med digital rådgivning, kontroll, kvalitetssikring og strukturering av informasjon innen veg og VA. Målet er enklere arbeidsflyt, bedre oversikt og løsninger som faktisk fungerer i praksis.",
+        heroTitle: "Digital rådgivning og kontroll for veg- og VA-prosjekter",
+        heroText: "OMinfra hjelper aktører innen veg og VA med kontroll, kvalitetssikring, dokumentstruktur og smartere arbeidsflyt. Vi kombinerer fagforståelse med digitale arbeidsmetoder som gir bedre oversikt, mindre manuelt arbeid og mer presise leveranser.",
         heroCtaPrimary: "Be om kontakt",
         heroCtaSecondary: "Se hva vi kan hjelpe med",
         point1Title: "Oversikt",
@@ -768,17 +776,17 @@
         heroCardItem3: "Digitale arbeidsmetoder som gir bedre flyt og mindre manuelt arbeid",
         heroCardItem4: "Bistand som kan utføres effektivt fra hjemmekontor eller eksternt",
         servicesTitle: "Tjenester",
-        servicesIntro: "Vi ønsker å fylle gapet mellom klassisk rådgivning, praktisk bransjeforståelse og smartere digitale arbeidsmåter for infrastrukturprosjekter.",
+        servicesIntro: "Vi leverer støtte der prosjekter trenger mer kontroll, bedre struktur og mer effektive digitale arbeidsmåter innen veg og VA.",
         service1Title: "Digital rådgivning",
-        service1Text: "Faglig støtte og vurderinger innen veg og VA, med fokus på gjennomførbare løsninger og bedre beslutningsgrunnlag.",
-        service2Title: "Kontroll og kvalitet",
-        service2Text: "Kontroll av dokumentasjon, struktur, underlag og leveranser for å fange opp uklarheter, mangler og forbedringspunkter tidlig.",
-        service3Title: "Smarte arbeidsprosesser",
-        service3Text: "Utvikling og forbedring av enkle digitale løsninger, rutiner og systemer som gjør arbeidshverdagen mer effektiv.",
+        service1Text: "Faglig støtte og vurderinger innen veg og VA, med fokus på tydelige anbefalinger, bedre beslutningsgrunnlag og løsninger som lar seg gjennomføre i praksis.",
+        service2Title: "Kontroll og kvalitetssikring",
+        service2Text: "Gjennomgang av dokumentasjon, underlag og leveranser for å avdekke uklarheter, redusere feil og styrke kvaliteten tidlig i prosessen.",
+        service3Title: "Effektiv arbeidsflyt",
+        service3Text: "Forbedring av rutiner, struktur og digitale oppsett som reduserer manuelt arbeid og gjør prosjekthverdagen mer oversiktlig og effektiv.",
         aboutTitle: "Om OMinfra",
-        aboutIntro: "OMinfra er bygget rundt ideen om at mye verdifullt arbeid innen infrastruktur kan gjøres smartere, mer strukturert og mer effektivt digitalt.",
-        aboutPanelTitle: "Bransjeforståelse kombinert med digitale muligheter",
-        aboutPanelText: "Vi ser for oss en nisje der man kan bidra som rådgiver, kontrollør, kvalitetssikrer og problemløser for aktører innen veg og VA — uten at alt må løses ute i felt. Mange oppgaver kan gjøres godt fra PC, så lenge man forstår både faget og behovene i praksis.",
+        aboutIntro: "OMinfra er utviklet for å levere digital støtte til infrastrukturprosjekter der kontroll, struktur og faglig oversikt er avgjørende.",
+        aboutPanelTitle: "Fagforståelse kombinert med digitale arbeidsmetoder",
+        aboutPanelText: "Vi jobber i skjæringspunktet mellom rådgivning, kontroll og digital forbedring for aktører innen veg og VA. Mange oppgaver kan løses effektivt fra PC, så lenge arbeidet bygger på reell fagforståelse, struktur og innsikt i hvordan prosjekter faktisk gjennomføres.",
         aboutList1: "Fokus på løsninger som er nyttige i faktisk drift",
         aboutList2: "Arbeid som kan utføres effektivt eksternt",
         aboutList3: "Kombinasjon av struktur, kontroll og forbedring",
@@ -791,8 +799,8 @@
         stat3Text: "Oppgaver og prosesser som kan løses fra PC",
         stat4Title: "Praktisk",
         stat4Text: "Løsninger som er enkle nok til å faktisk bli brukt",
-        approachTitle: "Hvordan vi tenker",
-        approachIntro: "Vi ønsker å jobbe i skjæringspunktet mellom rådgivning, kontroll og digital forbedring — særlig der dagens løsninger er for tunge, for uklare eller rett og slett ikke gode nok.",
+        approachTitle: "Hvordan vi jobber",
+        approachIntro: "Vi går inn der prosjekter trenger tydeligere struktur, bedre kontroll og smartere digitale arbeidsmåter — særlig når dagens løsninger er tunge, uklare eller for lite effektive.",
         approachMeta: "Arbeidsområde",
         approach1Title: "Dokumentasjon og struktur",
         approach1Text: "Rydding, gjennomgang og oppsett av underlag slik at informasjon blir enklere å forstå, kontrollere og bruke videre i prosjektet.",
@@ -801,7 +809,7 @@
         approach3Title: "Bedre digitale løsninger",
         approach3Text: "Identifisering av arbeidsoppgaver som kan forenkles med smarte verktøy, bedre rutiner eller spesialtilpassede oppsett.",
         contactTitle: "Kontakt",
-        contactIntro: "Ta kontakt dersom du vil diskutere en idé, et behov eller et område der dagens arbeidsmetode kan forbedres.",
+        contactIntro: "Ta kontakt dersom du trenger støtte til kontroll, kvalitetssikring, dokumentstruktur eller forbedring av arbeidsflyt innen veg og VA.",
         contactInfoTitle: "Kontaktinformasjon",
         contactCompany: "Osdal & Moldskred Infrastruktur",
         emailLabel: "E-post",
@@ -828,8 +836,8 @@
         navContact: "Kontakt",
         navCta: "Ta kontakt",
         eyebrow: "Veg · VA · Kontroll · Dokumentasjon · Smarte løysingar",
-        heroTitle: "Digital støtte for betre avgjerder innan infrastruktur",
-        heroText: "OMinfra tilbyr digital rådgiving, kontroll, kvalitetssikring og strukturering av informasjon innan veg og VA. Målet er enklare arbeidsflyt, betre oversikt og løysingar som faktisk fungerer i praksis.",
+        heroTitle: "Digital rådgiving og kontroll for veg- og VA-prosjekt",
+        heroText: "OMinfra hjelper aktørar innan veg og VA med kontroll, kvalitetssikring, dokumentstruktur og smartare arbeidsflyt. Vi kombinerer fagforståing med digitale arbeidsmetodar som gir betre oversikt, mindre manuelt arbeid og meir presise leveransar.",
         heroCtaPrimary: "Ta kontakt",
         heroCtaSecondary: "Sjå kva vi kan hjelpe med",
         point1Title: "Oversikt",
@@ -844,17 +852,17 @@
         heroCardItem3: "Digitale arbeidsmetodar som gir betre flyt og mindre manuelt arbeid",
         heroCardItem4: "Bistand som kan utførast effektivt frå heimekontor eller eksternt",
         servicesTitle: "Tenester",
-        servicesIntro: "Vi ønskjer å fylle gapet mellom klassisk rådgiving, praktisk bransjeforståing og smartare digitale arbeidsmåtar for infrastrukturprosjekt.",
+        servicesIntro: "Vi leverer støtte der prosjekt treng meir kontroll, betre struktur og meir effektive digitale arbeidsmåtar innan veg og VA.",
         service1Title: "Digital rådgiving",
-        service1Text: "Fagleg støtte og vurderingar innan veg og VA, med fokus på gjennomførbare løysingar og betre avgjerdsgrunnlag.",
-        service2Title: "Kontroll og kvalitet",
-        service2Text: "Kontroll av dokumentasjon, struktur, underlag og leveransar for å fange opp uklarheiter, manglar og forbetringspunkt tidleg.",
-        service3Title: "Smarte arbeidsprosessar",
-        service3Text: "Utvikling og forbetring av enkle digitale løysingar, rutinar og system som gjer arbeidshverdagen meir effektiv.",
+        service1Text: "Fagleg støtte og vurderingar innan veg og VA, med fokus på tydelege tilrådingar, betre avgjerdsgrunnlag og løysingar som let seg gjennomføre i praksis.",
+        service2Title: "Kontroll og kvalitetssikring",
+        service2Text: "Gjennomgang av dokumentasjon, underlag og leveransar for å avdekkje uklarheiter, redusere feil og styrkje kvaliteten tidleg i prosessen.",
+        service3Title: "Effektiv arbeidsflyt",
+        service3Text: "Forbetring av rutinar, struktur og digitale oppsett som reduserer manuelt arbeid og gjer prosjekthverdagen meir oversiktleg og effektiv.",
         aboutTitle: "Om OMinfra",
-        aboutIntro: "OMinfra er bygd rundt ideen om at mykje verdifullt arbeid innan infrastruktur kan gjerast smartare, meir strukturert og meir effektivt digitalt.",
-        aboutPanelTitle: "Bransjeforståing kombinert med digitale moglegheiter",
-        aboutPanelText: "Vi ser for oss ei nisje der ein kan bidra som rådgivar, kontrollør, kvalitetssikrar og problemløysar for aktørar innan veg og VA — utan at alt må løysast ute i felt. Mange oppgåver kan gjerast godt frå PC, så lenge ein forstår både faget og behova i praksis.",
+        aboutIntro: "OMinfra er utvikla for å levere digital støtte til infrastrukturprosjekt der kontroll, struktur og fagleg oversikt er avgjerande.",
+        aboutPanelTitle: "Fagforståing kombinert med digitale arbeidsmetodar",
+        aboutPanelText: "Vi arbeider i skjeringspunktet mellom rådgiving, kontroll og digital forbetring for aktørar innan veg og VA. Mange oppgåver kan løysast effektivt frå PC, så lenge arbeidet byggjer på reell fagforståing, struktur og innsikt i korleis prosjekt faktisk blir gjennomførte.",
         aboutList1: "Fokus på løysingar som er nyttige i faktisk drift",
         aboutList2: "Arbeid som kan utførast effektivt eksternt",
         aboutList3: "Kombinasjon av struktur, kontroll og forbetring",
@@ -867,8 +875,8 @@
         stat3Text: "Oppgåver og prosessar som kan løysast frå PC",
         stat4Title: "Praktisk",
         stat4Text: "Løysingar som er enkle nok til å faktisk bli brukte",
-        approachTitle: "Korleis vi tenkjer",
-        approachIntro: "Vi ønskjer å jobbe i skjeringspunktet mellom rådgiving, kontroll og digital forbetring — særleg der dagens løysingar er for tunge, for uklare eller rett og slett ikkje gode nok.",
+        approachTitle: "Korleis vi arbeider",
+        approachIntro: "Vi går inn der prosjekt treng tydelegare struktur, betre kontroll og smartare digitale arbeidsmåtar — særleg når dagens løysingar er tunge, uklare eller for lite effektive.",
         approachMeta: "Arbeidsområde",
         approach1Title: "Dokumentasjon og struktur",
         approach1Text: "Rydding, gjennomgang og oppsett av underlag slik at informasjon blir enklare å forstå, kontrollere og bruke vidare i prosjektet.",
@@ -877,7 +885,7 @@
         approach3Title: "Betre digitale løysingar",
         approach3Text: "Identifisering av arbeidsoppgåver som kan forenklast med smarte verktøy, betre rutinar eller spesialtilpassa oppsett.",
         contactTitle: "Kontakt",
-        contactIntro: "Ta kontakt dersom du vil diskutere ein idé, eit behov eller eit område der dagens arbeidsmetode kan forbetrast.",
+        contactIntro: "Ta kontakt dersom du treng støtte til kontroll, kvalitetssikring, dokumentstruktur eller forbetring av arbeidsflyt innan veg og VA.",
         contactInfoTitle: "Kontaktinformasjon",
         contactCompany: "Osdal & Moldskred Infrastruktur",
         emailLabel: "E-post",
@@ -904,8 +912,8 @@
         navContact: "Contact",
         navCta: "Get in touch",
         eyebrow: "Road · Water · Control · Documentation · Smart solutions",
-        heroTitle: "Digital support for better decisions in infrastructure",
-        heroText: "OMinfra provides digital consulting, control, quality assurance and structuring of information within road and water infrastructure. The goal is simpler workflows, better overview and solutions that actually work in practice.",
+        heroTitle: "Digital consulting and control for road and water infrastructure projects",
+        heroText: "OMinfra supports road and water infrastructure stakeholders with control, quality assurance, documentation structure and smarter workflows. We combine industry understanding with digital working methods that create better overview, less manual work and more precise deliveries.",
         heroCtaPrimary: "Contact us",
         heroCtaSecondary: "See how we can help",
         point1Title: "Overview",
@@ -920,17 +928,17 @@
         heroCardItem3: "Digital working methods that improve flow and reduce manual work",
         heroCardItem4: "Support that can be delivered efficiently from a home office or remotely",
         servicesTitle: "Services",
-        servicesIntro: "We aim to fill the gap between traditional consulting, practical industry understanding and smarter digital ways of working in infrastructure projects.",
+        servicesIntro: "We provide support where projects need stronger control, better structure and more efficient digital ways of working within road and water infrastructure.",
         service1Title: "Digital consulting",
-        service1Text: "Professional support and assessments within road and water infrastructure, with a focus on practical solutions and stronger decision-making.",
-        service2Title: "Control and quality",
-        service2Text: "Review of documentation, structure, technical basis and deliveries to identify ambiguities, gaps and improvement points early.",
-        service3Title: "Smart workflows",
-        service3Text: "Development and improvement of simple digital solutions, routines and systems that make everyday work more efficient.",
+        service1Text: "Professional support and assessments within road and water infrastructure, focused on clear recommendations, stronger decision-making and solutions that work in practice.",
+        service2Title: "Control and quality assurance",
+        service2Text: "Review of documentation, technical basis and deliveries to identify ambiguities, reduce errors and strengthen quality early in the process.",
+        service3Title: "Efficient workflows",
+        service3Text: "Improvement of routines, structure and digital setups that reduce manual work and make project execution more efficient and easier to manage.",
         aboutTitle: "About OMinfra",
-        aboutIntro: "OMinfra is built on the idea that a great deal of valuable infrastructure work can be done smarter, with more structure and greater digital efficiency.",
-        aboutPanelTitle: "Industry understanding combined with digital opportunities",
-        aboutPanelText: "We see a niche where we can contribute as advisors, reviewers, quality assurers and problem-solvers for stakeholders within road and water infrastructure — without everything having to be solved in the field. Many tasks can be handled well from a PC, as long as there is solid understanding of both the discipline and practical needs.",
+        aboutIntro: "OMinfra is built to deliver digital support for infrastructure projects where control, structure and professional overview are critical.",
+        aboutPanelTitle: "Industry understanding combined with digital working methods",
+        aboutPanelText: "We operate at the intersection of consulting, control and digital improvement for stakeholders within road and water infrastructure. Many tasks can be solved efficiently from a PC, provided the work is based on real technical understanding, structure and insight into how projects are carried out in practice.",
         aboutList1: "Focus on solutions that are useful in real operations",
         aboutList2: "Work that can be performed efficiently remotely",
         aboutList3: "A combination of structure, control and improvement",
@@ -943,8 +951,8 @@
         stat3Text: "Tasks and processes that can be solved from a PC",
         stat4Title: "Practical",
         stat4Text: "Solutions simple enough to actually be used",
-        approachTitle: "How we think",
-        approachIntro: "We want to work at the intersection of consulting, control and digital improvement — especially where today's solutions are too heavy, too unclear or simply not good enough.",
+        approachTitle: "How we work",
+        approachIntro: "We step in where projects need clearer structure, stronger control and smarter digital ways of working — especially when current solutions are too heavy, unclear or inefficient.",
         approachMeta: "Focus area",
         approach1Title: "Documentation and structure",
         approach1Text: "Cleaning up, reviewing and setting up documentation so that information becomes easier to understand, control and use further in the project.",
@@ -953,7 +961,7 @@
         approach3Title: "Better digital solutions",
         approach3Text: "Identifying work tasks that can be simplified with smart tools, better routines or tailored setups.",
         contactTitle: "Contact",
-        contactIntro: "Get in touch if you would like to discuss an idea, a need or an area where today's way of working can be improved.",
+        contactIntro: "Get in touch if you need support with control, quality assurance, documentation structure or workflow improvement within road and water infrastructure.",
         contactInfoTitle: "Contact information",
         contactCompany: "Osdal & Moldskred Infrastructure",
         emailLabel: "Email",
@@ -975,7 +983,9 @@
 
       document.documentElement.lang = lang;
       document.title = dictionary.pageTitle;
-      document.querySelector('meta[name="description"]').setAttribute("content", dictionary.pageDescription);
+      document
+        .querySelector('meta[name="description"]')
+        .setAttribute("content", dictionary.pageDescription);
 
       document.querySelectorAll("[data-i18n]").forEach((element) => {
         const key = element.getAttribute("data-i18n");
@@ -984,22 +994,21 @@
         }
       });
 
-      document.querySelectorAll(".lang-btn").forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.lang === lang);
-      });
-
+      document.getElementById("languageSelect").value = lang;
       localStorage.setItem("ominfraLanguage", lang);
     }
 
-    document.querySelectorAll(".lang-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        setLanguage(btn.dataset.lang);
-      });
+    const languageSelect = document.getElementById("languageSelect");
+
+    languageSelect.addEventListener("change", (event) => {
+      setLanguage(event.target.value);
     });
 
     const savedLanguage = localStorage.getItem("ominfraLanguage");
     if (savedLanguage && translations[savedLanguage]) {
       setLanguage(savedLanguage);
+    } else {
+      setLanguage("no");
     }
   </script>
 </body>
