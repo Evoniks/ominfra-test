@@ -62,6 +62,16 @@
       z-index: 40;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       backdrop-filter: blur(10px);
+      transition:
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(17, 28, 45, 0.97);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.22);
+      border-bottom-color: rgba(255,255,255,0.05);
     }
 
     .nav-inner {
@@ -71,6 +81,11 @@
       justify-content: space-between;
       gap: 20px;
       position: relative;
+      transition: min-height 0.25s ease;
+    }
+
+    .navbar.scrolled .nav-inner {
+      min-height: 94px;
     }
 
     .brand {
@@ -78,17 +93,65 @@
       align-items: center;
       flex-shrink: 0;
       padding: 4px 0;
-      }
+      position: relative;
+    }
 
     .brand-with-logo {
       gap: 0;
     }
 
+    .brand::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      background: radial-gradient(
+        circle,
+        rgba(200,168,107,0.18) 0%,
+        rgba(200,168,107,0.10) 35%,
+        rgba(200,168,107,0.00) 72%
+      );
+      filter: blur(10px);
+      pointer-events: none;
+      z-index: 0;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .brand:hover::before {
+      opacity: 1;
+      transform: translateY(-50%) scale(1.04);
+    }
+
     .site-logo {
-      height: 118px;
+      height: 110px;
       width: auto;
       display: block;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.28));
+      position: relative;
+      z-index: 1;
+      filter:
+        drop-shadow(0 10px 20px rgba(0,0,0,0.28))
+        drop-shadow(0 0 16px rgba(200,168,107,0.08));
+      transition:
+        transform 0.22s ease,
+        filter 0.22s ease,
+        opacity 0.22s ease,
+        height 0.25s ease;
+      transform-origin: left center;
+    }
+
+    .brand:hover .site-logo {
+      transform: translateY(-1px) scale(1.025);
+      filter:
+        drop-shadow(0 14px 24px rgba(0,0,0,0.34))
+        drop-shadow(0 0 22px rgba(200,168,107,0.16));
+    }
+
+    .navbar.scrolled .site-logo {
+      height: 92px;
     }
 
     .nav-right {
@@ -658,7 +721,11 @@
       }
 
       .site-logo {
-        height: 70px;
+        height: 98px;
+      }
+
+      .navbar.scrolled .site-logo {
+        height: 84px;
       }
     }
 
@@ -758,7 +825,11 @@
       }
 
       .site-logo {
-        height: 58px;
+        height: 78px;
+      }
+
+      .navbar.scrolled .site-logo {
+        height: 70px;
       }
 
       .hero p,
@@ -768,6 +839,12 @@
 
       .stats-grid {
         grid-template-columns: 1fr;
+      }
+
+      .brand::before {
+        width: 90px;
+        height: 90px;
+        left: 10px;
       }
     }
   </style>
@@ -1383,7 +1460,7 @@
         });
       });
 
-      return { switcher, toggle, label, flag, options, closeMenu };
+      return { switcher, toggle, label, flag, options };
     }
 
     function closeAllLanguageMenus() {
@@ -1475,6 +1552,17 @@
         closeMobileMenu();
       }
     });
+
+    function handleNavbarScroll() {
+      if (window.scrollY > 24) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    }
+
+    window.addEventListener("scroll", handleNavbarScroll);
+    handleNavbarScroll();
 
     const savedLanguage = localStorage.getItem("ominfraLanguage");
     if (savedLanguage && translations[savedLanguage]) {
