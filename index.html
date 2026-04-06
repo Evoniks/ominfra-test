@@ -3,22 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ominfra AS | Infrastruktur og entreprenør</title>
-  <meta name="description" content="Ominfra AS leverer tjenester innen infrastruktur, grunnarbeid, VA-anlegg og transport." />
+  <title>OMinfra | Digital rådgivning for veg og VA</title>
+  <meta
+    name="description"
+    content="OMinfra tilbyr digital rådgivning, kontroll, dokumentasjon og smarte løsninger innen veg og VA."
+  />
 
   <style>
     :root {
-      --bg: #f4f6f8;
+      --bg: #f5f7fa;
       --surface: #ffffff;
-      --primary: #162235;
-      --primary-2: #21344f;
-      --accent: #c8a96b;
+      --primary: #142033;
+      --primary-2: #1e314d;
+      --accent: #c8a86b;
       --text: #1f2937;
-      --muted: #5f6b7a;
-      --line: #d9e0e7;
+      --muted: #5b6675;
+      --line: #dde4eb;
       --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-      --radius: 16px;
-      --max-width: 1200px;
+      --radius: 18px;
+      --max-width: 1180px;
     }
 
     * {
@@ -40,11 +43,6 @@
     a {
       color: inherit;
       text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
     }
 
     .container {
@@ -77,17 +75,17 @@
     }
 
     .navbar {
-      background: rgba(22, 34, 53, 0.96);
+      background: rgba(20, 32, 51, 0.96);
       color: #fff;
       position: sticky;
       top: 0;
       z-index: 10;
-      backdrop-filter: blur(6px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
     }
 
     .nav-inner {
-      min-height: 76px;
+      min-height: 78px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -97,18 +95,18 @@
     .brand {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 3px;
     }
 
     .brand-title {
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 700;
       letter-spacing: 0.2px;
     }
 
     .brand-subtitle {
       font-size: 13px;
-      color: rgba(255,255,255,0.78);
+      color: rgba(255,255,255,0.75);
     }
 
     .nav-links {
@@ -120,8 +118,8 @@
 
     .nav-links a {
       color: rgba(255,255,255,0.92);
-      font-weight: 600;
       font-size: 15px;
+      font-weight: 600;
     }
 
     .nav-links a:hover {
@@ -144,16 +142,16 @@
 
     .hero {
       background:
-        linear-gradient(rgba(22, 34, 53, 0.82), rgba(22, 34, 53, 0.78)),
-        linear-gradient(135deg, #334155, #1e293b);
+        linear-gradient(rgba(20, 32, 51, 0.84), rgba(20, 32, 51, 0.80)),
+        linear-gradient(135deg, #334155, #0f172a);
       color: #fff;
-      padding: 96px 0 88px;
+      padding: 96px 0 86px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.3fr 0.9fr;
-      gap: 40px;
+      grid-template-columns: 1.2fr 0.9fr;
+      gap: 36px;
       align-items: center;
     }
 
@@ -168,15 +166,15 @@
     }
 
     .hero h1 {
-      font-size: clamp(36px, 6vw, 62px);
+      font-size: clamp(36px, 6vw, 60px);
       line-height: 1.05;
-      margin: 0 0 20px;
+      margin: 0 0 18px;
     }
 
     .hero p {
       font-size: 19px;
       color: rgba(255,255,255,0.88);
-      max-width: 700px;
+      max-width: 720px;
       margin: 0 0 28px;
     }
 
@@ -184,12 +182,12 @@
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 34px;
+      margin-bottom: 32px;
     }
 
     .button-secondary {
       display: inline-block;
-      border: 1px solid rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.22);
       color: #fff;
       padding: 12px 18px;
       border-radius: 999px;
@@ -232,7 +230,7 @@
     .hero-card ul {
       margin: 0;
       padding-left: 18px;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255,255,255,0.92);
     }
 
     .hero-card li + li {
@@ -306,7 +304,6 @@
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
       gap: 28px;
-      align-items: stretch;
     }
 
     .about-panel,
@@ -350,17 +347,13 @@
 
     .stat-box strong {
       display: block;
-      font-size: 30px;
+      font-size: 24px;
       color: var(--primary);
       margin-bottom: 6px;
     }
 
     .projects {
-      background: linear-gradient(180deg, #eef2f6 0%, #f4f6f8 100%);
-    }
-
-    .project-card h3 {
-      margin-bottom: 8px;
+      background: linear-gradient(180deg, #eef2f6 0%, #f5f7fa 100%);
     }
 
     .project-meta {
@@ -402,7 +395,7 @@
 
     .contact-card p,
     .contact-card a {
-      color: rgba(255,255,255,0.9);
+      color: rgba(255,255,255,0.92);
       margin: 6px 0;
     }
 
@@ -452,7 +445,7 @@
       }
 
       .hero {
-        padding: 72px 0 64px;
+        padding: 72px 0 60px;
       }
 
       .section-header h2 {
@@ -460,7 +453,7 @@
       }
 
       .brand-title {
-        font-size: 24px;
+        font-size: 25px;
       }
 
       .hero p,
@@ -483,8 +476,8 @@
         <span>+47 00 00 00 00</span>
       </div>
       <div class="topbar-right">
-        <span>Oslo / Viken</span>
-        <span>Infrastruktur og entreprenør</span>
+        <span>Ålesund</span>
+        <span>Digital rådgivning for veg og VA</span>
       </div>
     </div>
   </div>
@@ -492,16 +485,16 @@
   <nav class="navbar">
     <div class="container nav-inner">
       <div class="brand">
-        <span class="brand-title">Ominfra AS</span>
-        <span class="brand-subtitle">Solid gjennomføring fra plan til ferdig leveranse</span>
+        <span class="brand-title">OMinfra</span>
+        <span class="brand-subtitle">Osdal &amp; Moldskred Infrastruktur</span>
       </div>
 
       <div class="nav-links">
         <a href="#tjenester">Tjenester</a>
         <a href="#om-oss">Om oss</a>
-        <a href="#prosjekter">Prosjekter</a>
+        <a href="#arbeidsform">Arbeidsform</a>
         <a href="#kontakt">Kontakt</a>
-        <a class="cta-button" href="#kontakt">Be om kontakt</a>
+        <a class="cta-button" href="#kontakt">Ta kontakt</a>
       </div>
     </div>
   </nav>
@@ -509,41 +502,42 @@
   <header class="hero">
     <div class="container hero-grid">
       <div>
-        <span class="eyebrow">Infrastruktur · Grunnarbeid · VA · Transport</span>
-        <h1>Pålitelig entreprenør for moderne infrastrukturprosjekter</h1>
+        <span class="eyebrow">Veg · VA · Kontroll · Dokumentasjon · Smarte løsninger</span>
+        <h1>Digital støtte for bedre beslutninger innen infrastruktur</h1>
         <p>
-          Ominfra AS leverer tjenester innen grunnarbeid, VA-anlegg og transport
-          med fokus på kvalitet, fremdrift og ryddig gjennomføring.
+          OMinfra bistår med digital rådgivning, kontroll, kvalitetssikring og
+          strukturering av informasjon innen veg og VA. Målet er enklere arbeidsflyt,
+          bedre oversikt og løsninger som faktisk fungerer i praksis.
         </p>
 
         <div class="hero-actions">
-          <a class="cta-button" href="#kontakt">Kontakt oss</a>
-          <a class="button-secondary" href="#tjenester">Se våre tjenester</a>
+          <a class="cta-button" href="#kontakt">Be om kontakt</a>
+          <a class="button-secondary" href="#tjenester">Se hva vi kan hjelpe med</a>
         </div>
 
         <div class="hero-points">
           <div class="hero-point">
-            <strong>Presisjon</strong>
-            <span>Nøyaktig utførelse i alle ledd</span>
+            <strong>Oversikt</strong>
+            <span>Bedre struktur på dokumentasjon og underlag</span>
           </div>
           <div class="hero-point">
-            <strong>Fremdrift</strong>
-            <span>Effektiv produksjon og god logistikk</span>
+            <strong>Kontroll</strong>
+            <span>Faglig støtte, kontroll og kvalitetssikring</span>
           </div>
           <div class="hero-point">
-            <strong>Kvalitet</strong>
-            <span>Trygge og robuste leveranser</span>
+            <strong>Effektivitet</strong>
+            <span>Smarte løsninger som sparer tid i hverdagen</span>
           </div>
         </div>
       </div>
 
       <div class="hero-card">
-        <h2>Det vi kan hjelpe med</h2>
+        <h2>Typiske behov vi kan bidra med</h2>
         <ul>
-          <li>Graving, masseutskifting og klargjøring av tomt</li>
-          <li>VA-anlegg, grøfter, rørføring og teknisk infrastruktur</li>
-          <li>Transport og logistikk tilpasset prosjektets behov</li>
-          <li>Leveranser for både mindre oppdrag og større entrepriser</li>
+          <li>Gjennomgang, strukturering og kontroll av teknisk underlag</li>
+          <li>Rådgivning knyttet til veg, VA og praktisk prosjektgjennomføring</li>
+          <li>Digitale arbeidsmetoder som gir bedre flyt og mindre manuelt arbeid</li>
+          <li>Bistand som kan utføres effektivt fra hjemmekontor eller eksternt</li>
         </ul>
       </div>
     </div>
@@ -554,36 +548,36 @@
       <div class="section-header">
         <h2>Tjenester</h2>
         <p>
-          Vi leverer praktiske og driftssikre løsninger for prosjekter der
-          pålitelig utførelse og god koordinering er avgjørende.
+          Vi ønsker å fylle gapet mellom klassisk rådgivning, praktisk bransjeforståelse
+          og smartere digitale arbeidsmåter for infrastrukturprosjekter.
         </p>
       </div>
 
       <div class="cards-3">
         <article class="card">
           <div class="card-number">01</div>
-          <h3>Grunnarbeid</h3>
+          <h3>Digital rådgivning</h3>
           <p>
-            Graving, planering, masseutskifting, drenering og klargjøring
-            av arealer for videre bygging og tekniske installasjoner.
+            Faglig støtte og vurderinger innen veg og VA, med fokus på gjennomførbare
+            løsninger og bedre beslutningsgrunnlag.
           </p>
         </article>
 
         <article class="card">
           <div class="card-number">02</div>
-          <h3>VA-anlegg</h3>
+          <h3>Kontroll og kvalitet</h3>
           <p>
-            Arbeid med vann og avløp, grøfter, røranlegg og annen kritisk
-            infrastruktur med fokus på kvalitet og levetid.
+            Kontroll av dokumentasjon, struktur, underlag og leveranser for å fange opp
+            uklarheter, mangler og forbedringspunkter tidlig.
           </p>
         </article>
 
         <article class="card">
           <div class="card-number">03</div>
-          <h3>Transport</h3>
+          <h3>Smarte arbeidsprosesser</h3>
           <p>
-            Effektiv transport av masser, utstyr og materiell med god logistikk
-            og tett oppfølging gjennom hele prosjektperioden.
+            Utvikling og forbedring av enkle digitale løsninger, rutiner og systemer som
+            gjør arbeidshverdagen mer effektiv.
           </p>
         </article>
       </div>
@@ -593,47 +587,48 @@
   <section id="om-oss" class="about">
     <div class="container">
       <div class="section-header">
-        <h2>Om oss</h2>
+        <h2>Om OMinfra</h2>
         <p>
-          Ominfra AS skal fremstå som en trygg og profesjonell samarbeidspartner
-          for oppdragsgivere som trenger effektiv utførelse og tydelig kommunikasjon.
+          OMinfra er bygget rundt ideen om at mye verdifullt arbeid innen infrastruktur
+          kan gjøres smartere, mer strukturert og mer effektivt digitalt.
         </p>
       </div>
 
       <div class="about-grid">
         <div class="about-panel">
-          <h3>En entreprenør du kan stole på</h3>
+          <h3>Bransjeforståelse kombinert med digitale muligheter</h3>
           <p>
-            Vi jobber målrettet for å levere stabile resultater i prosjekter
-            innen infrastruktur og entreprenørvirksomhet. Målet er alltid å
-            kombinere kvalitet, fremdrift og ryddige prosesser.
+            Vi ser for oss en nisje der man kan bidra som rådgiver, kontrollør,
+            kvalitetssikrer og problemløser for aktører innen veg og VA — uten at alt
+            må løses ute i felt. Mange oppgaver kan gjøres godt fra PC, så lenge man
+            forstår både faget og behovene i praksis.
           </p>
 
           <ul class="check-list">
-            <li>Fokus på sikker og effektiv prosjektgjennomføring</li>
-            <li>Tydelig dialog med kunde og samarbeidspartnere</li>
-            <li>Leveranser tilpasset både små og større oppdrag</li>
-            <li>Ryddighet, presisjon og ansvar i utførelsen</li>
+            <li>Fokus på løsninger som er nyttige i faktisk drift</li>
+            <li>Arbeid som kan utføres effektivt eksternt</li>
+            <li>Kombinasjon av struktur, kontroll og forbedring</li>
+            <li>Mål om å gjøre kompliserte ting enklere å håndtere</li>
           </ul>
         </div>
 
         <div class="stats-panel">
           <div class="stats-grid">
             <div class="stat-box">
-              <strong>Grunn</strong>
-              <span>Utførelse basert på god planlegging og kontroll</span>
+              <strong>Veg</strong>
+              <span>Støtte til vurdering, underlag og struktur i prosjekter</span>
             </div>
             <div class="stat-box">
               <strong>VA</strong>
-              <span>Teknisk infrastruktur med fokus på varige løsninger</span>
+              <span>Faglig kontroll og smartere flyt i teknisk arbeid</span>
             </div>
             <div class="stat-box">
-              <strong>Logistikk</strong>
-              <span>Effektiv transport og koordinering på prosjektet</span>
+              <strong>Digitalt</strong>
+              <span>Oppgaver og prosesser som kan løses fra PC</span>
             </div>
             <div class="stat-box">
-              <strong>Kvalitet</strong>
-              <span>Leveranser med orden, tempo og faglig tyngde</span>
+              <strong>Praktisk</strong>
+              <span>Løsninger som er enkle nok til å faktisk bli brukt</span>
             </div>
           </div>
         </div>
@@ -641,41 +636,42 @@
     </div>
   </section>
 
-  <section id="prosjekter" class="projects">
+  <section id="arbeidsform" class="projects">
     <div class="container">
       <div class="section-header">
-        <h2>Prosjekter</h2>
+        <h2>Hvordan vi tenker</h2>
         <p>
-          Her kan du senere legge inn referanseprosjekter, bilder og korte
-          beskrivelser av oppdrag dere ønsker å vise frem.
+          Vi ønsker å jobbe i skjæringspunktet mellom rådgivning, kontroll og digital
+          forbedring — særlig der dagens løsninger er for tunge, for uklare eller
+          rett og slett ikke gode nok.
         </p>
       </div>
 
       <div class="cards-3">
-        <article class="card project-card">
-          <span class="project-meta">Referanseprosjekt</span>
-          <h3>Tomteopparbeidelse</h3>
+        <article class="card">
+          <span class="project-meta">Arbeidsområde</span>
+          <h3>Dokumentasjon og struktur</h3>
           <p>
-            Klargjøring av område med grunnarbeid, massehåndtering og
-            tilrettelegging for videre utbygging.
+            Rydding, gjennomgang og oppsett av underlag slik at informasjon blir enklere
+            å forstå, kontrollere og bruke videre i prosjektet.
           </p>
         </article>
 
-        <article class="card project-card">
-          <span class="project-meta">Referanseprosjekt</span>
-          <h3>VA-utbygging</h3>
+        <article class="card">
+          <span class="project-meta">Arbeidsområde</span>
+          <h3>Faglig støtte og kontroll</h3>
           <p>
-            Etablering av grøfter, rørføring og teknisk infrastruktur for
-            sikker og funksjonell drift.
+            Bidrag i rollen som sparringspartner, kontrollør eller ekstra kapasitet når
+            prosjekter trenger mer oversikt og kvalitet i leveransen.
           </p>
         </article>
 
-        <article class="card project-card">
-          <span class="project-meta">Referanseprosjekt</span>
-          <h3>Transport og logistikk</h3>
+        <article class="card">
+          <span class="project-meta">Arbeidsområde</span>
+          <h3>Bedre digitale løsninger</h3>
           <p>
-            Koordinert transport av masser og materiell med fokus på effektiv
-            fremdrift og god flyt på prosjektområdet.
+            Identifisering av arbeidsoppgaver som kan forenkles med smarte verktøy,
+            bedre rutiner eller spesialtilpassede oppsett.
           </p>
         </article>
       </div>
@@ -685,27 +681,29 @@
   <section id="kontakt" class="contact">
     <div class="container">
       <div class="section-header">
-        <h2>Kontakt oss</h2>
+        <h2>Kontakt</h2>
         <p>
-          Ta kontakt for en uforpliktende prat om prosjekt, kapasitet eller samarbeid.
+          Ta kontakt dersom du vil diskutere en idé, et behov eller et område der
+          dagens arbeidsmetode kan forbedres.
         </p>
       </div>
 
       <div class="contact-grid">
         <div class="contact-card">
           <h3>Kontaktinformasjon</h3>
-          <p><strong>Ominfra AS</strong></p>
+          <p><strong>OMinfra</strong></p>
+          <p>Osdal &amp; Moldskred Infrastruktur</p>
           <p>E-post: <a href="mailto:post@ominfra.no">post@ominfra.no</a></p>
           <p>Telefon: <a href="tel:+4700000000">+47 00 00 00 00</a></p>
-          <p>Område: Oslo / Viken</p>
+          <p>Sted: Ålesund</p>
         </div>
 
         <div class="contact-card">
-          <h3>Hva kan du sende oss?</h3>
-          <p>Beskrivelse av oppdraget</p>
-          <p>Lokasjon og ønsket oppstart</p>
-          <p>Tegninger, bilder eller annen relevant dokumentasjon</p>
-          <p>Kontaktinformasjon for oppfølging</p>
+          <h3>Aktuelt å ta kontakt om</h3>
+          <p>Behov for kontroll eller kvalitetssikring</p>
+          <p>Forbedring av dokumentasjon og arbeidsflyt</p>
+          <p>Rådgivning innen veg og VA</p>
+          <p>Digitale løsninger for oppgaver som i dag er tungvinte</p>
         </div>
       </div>
     </div>
@@ -713,8 +711,8 @@
 
   <footer>
     <div class="container footer-inner">
-      <span>© 2026 Ominfra AS. Alle rettigheter forbeholdt.</span>
-      <span>Infrastruktur · Entreprenør · Grunnarbeid · VA · Transport</span>
+      <span>© 2026 OMinfra. Alle rettigheter forbeholdt.</span>
+      <span>Ålesund · Veg · VA · Rådgivning · Kontroll · Digitale løsninger</span>
     </div>
   </footer>
 
