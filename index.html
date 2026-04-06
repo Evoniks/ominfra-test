@@ -94,6 +94,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 20px;
+      position: relative;
     }
 
     .brand {
@@ -114,12 +115,18 @@
       color: rgba(255,255,255,0.75);
     }
 
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-left: auto;
+    }
+
     .nav-links {
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
       align-items: center;
-      margin-left: auto;
       justify-content: flex-end;
     }
 
@@ -154,8 +161,7 @@
       position: relative;
       display: flex;
       align-items: center;
-      margin-left: 8px;
-      order: 99;
+      flex-shrink: 0;
     }
 
     .lang-dropdown-toggle {
@@ -245,7 +251,6 @@
       padding: 10px;
       z-index: 50;
       backdrop-filter: blur(12px);
-
       opacity: 0;
       transform: translateY(8px) scale(0.98);
       pointer-events: none;
@@ -318,6 +323,42 @@
       font-size: 12px;
       font-weight: 500;
       margin-top: 2px;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: background 0.2s ease, border-color 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .menu-toggle:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .menu-toggle:focus-visible {
+      outline: none;
+      border-color: rgba(200,168,107,0.95);
+      box-shadow: 0 0 0 3px rgba(200,168,107,0.18);
+    }
+
+    .menu-toggle svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .mobile-menu-panel {
+      display: none;
     }
 
     .hero {
@@ -626,21 +667,72 @@
         grid-template-columns: 1fr;
       }
 
-      .nav-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 16px 0;
+      .nav-links {
+        display: none;
       }
 
-      .nav-links {
-        gap: 16px;
-        margin-left: 0;
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .mobile-menu-panel {
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.25s ease, opacity 0.2s ease, padding 0.2s ease;
+        padding: 0;
+      }
+
+      .navbar.mobile-open .mobile-menu-panel {
+        max-height: 700px;
+        opacity: 1;
+        padding: 0 0 18px;
+      }
+
+      .mobile-menu-inner {
+        display: grid;
+        gap: 12px;
+        padding-top: 10px;
+      }
+
+      .mobile-menu-links {
+        display: grid;
+        gap: 10px;
+      }
+
+      .mobile-menu-links a {
+        color: rgba(255,255,255,0.94);
+        font-weight: 600;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.06);
+      }
+
+      .mobile-menu-links a.cta-button {
+        text-align: center;
+      }
+
+      .mobile-lang-wrap {
+        display: flex;
         justify-content: flex-start;
       }
 
-      .lang-switcher {
+      .mobile-lang-wrap .lang-switcher {
         margin-left: 0;
-        order: 0;
+        width: 100%;
+      }
+
+      .mobile-lang-wrap .lang-dropdown-toggle {
+        width: 100%;
+      }
+
+      .mobile-lang-wrap .lang-dropdown-menu {
+        left: 0;
+        right: auto;
+        width: 100%;
+        min-width: 0;
       }
     }
 
@@ -663,6 +755,10 @@
         font-size: 25px;
       }
 
+      .brand-subtitle {
+        font-size: 12px;
+      }
+
       .hero p,
       .section-header p {
         font-size: 17px;
@@ -672,15 +768,8 @@
         grid-template-columns: 1fr;
       }
 
-      .lang-dropdown-toggle {
-        min-width: 100%;
-      }
-
-      .lang-dropdown-menu {
-        left: 0;
-        right: auto;
-        width: 100%;
-        min-width: 0;
+      .topbar {
+        font-size: 13px;
       }
     }
   </style>
@@ -699,64 +788,142 @@
     </div>
   </div>
 
-  <nav class="navbar">
+  <nav class="navbar" id="navbar">
     <div class="container nav-inner">
       <div class="brand">
         <span class="brand-title">OMinfra</span>
         <span class="brand-subtitle" data-i18n="brandSubtitle">Osdal &amp; Moldskred Infrastruktur</span>
       </div>
 
-      <div class="nav-links">
-        <a href="#tjenester" data-i18n="navServices">Tjenester</a>
-        <a href="#om-oss" data-i18n="navAbout">Om oss</a>
-        <a href="#arbeidsform" data-i18n="navApproach">Arbeidsform</a>
-        <a href="#kontakt" data-i18n="navContact">Kontakt</a>
-        <a class="cta-button" href="#kontakt" data-i18n="navCta">Ta kontakt</a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#tjenester" data-i18n="navServices">Tjenester</a>
+          <a href="#om-oss" data-i18n="navAbout">Om oss</a>
+          <a href="#arbeidsform" data-i18n="navApproach">Arbeidsform</a>
+          <a href="#kontakt" data-i18n="navContact">Kontakt</a>
+          <a class="cta-button" href="#kontakt" data-i18n="navCta">Ta kontakt</a>
 
-        <div class="lang-switcher" id="langSwitcher">
-          <button
-            type="button"
-            class="lang-dropdown-toggle"
-            id="langToggle"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <span class="lang-toggle-left">
-              <span class="lang-flag" id="currentLanguageFlag">🇳🇴</span>
-              <span class="lang-current-label" id="currentLanguageLabel">Norsk Bokmål</span>
-            </span>
-            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-          </button>
-
-          <div class="lang-dropdown-menu" id="langMenu" role="menu">
-            <button type="button" class="lang-option active" data-lang="no" role="menuitem">
-              <span class="lang-flag">🇳🇴</span>
-              <span class="lang-bullet"></span>
-              <span class="lang-option-label">
-                Norsk Bokmål
-                <small>Bokmål</small>
+          <div class="lang-switcher" id="langSwitcherDesktop">
+            <button
+              type="button"
+              class="lang-dropdown-toggle"
+              id="langToggleDesktop"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <span class="lang-toggle-left">
+                <span class="lang-flag" id="currentLanguageFlagDesktop">🇳🇴</span>
+                <span class="lang-current-label" id="currentLanguageLabelDesktop">Norsk Bokmål</span>
               </span>
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
             </button>
 
-            <button type="button" class="lang-option" data-lang="nn" role="menuitem">
-              <span class="lang-flag">🇳🇴</span>
-              <span class="lang-bullet"></span>
-              <span class="lang-option-label">
-                Norsk Nynorsk
-                <small>Nynorsk</small>
+            <div class="lang-dropdown-menu" id="langMenuDesktop" role="menu">
+              <button type="button" class="lang-option active" data-lang="no" role="menuitem">
+                <span class="lang-flag">🇳🇴</span>
+                <span class="lang-bullet"></span>
+                <span class="lang-option-label">
+                  Norsk Bokmål
+                  <small>Bokmål</small>
+                </span>
+              </button>
+
+              <button type="button" class="lang-option" data-lang="nn" role="menuitem">
+                <span class="lang-flag">🇳🇴</span>
+                <span class="lang-bullet"></span>
+                <span class="lang-option-label">
+                  Norsk Nynorsk
+                  <small>Nynorsk</small>
+                </span>
+              </button>
+
+              <button type="button" class="lang-option" data-lang="en" role="menuitem">
+                <span class="lang-flag">🇬🇧</span>
+                <span class="lang-bullet"></span>
+                <span class="lang-option-label">
+                  English
+                  <small>English</small>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="Åpne meny"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+          type="button"
+        >
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M4 12H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu-panel" id="mobileMenu">
+      <div class="container mobile-menu-inner">
+        <div class="mobile-menu-links">
+          <a href="#tjenester" data-i18n="navServices">Tjenester</a>
+          <a href="#om-oss" data-i18n="navAbout">Om oss</a>
+          <a href="#arbeidsform" data-i18n="navApproach">Arbeidsform</a>
+          <a href="#kontakt" data-i18n="navContact">Kontakt</a>
+          <a class="cta-button" href="#kontakt" data-i18n="navCta">Ta kontakt</a>
+        </div>
+
+        <div class="mobile-lang-wrap">
+          <div class="lang-switcher" id="langSwitcherMobile">
+            <button
+              type="button"
+              class="lang-dropdown-toggle"
+              id="langToggleMobile"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <span class="lang-toggle-left">
+                <span class="lang-flag" id="currentLanguageFlagMobile">🇳🇴</span>
+                <span class="lang-current-label" id="currentLanguageLabelMobile">Norsk Bokmål</span>
               </span>
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
             </button>
 
-            <button type="button" class="lang-option" data-lang="en" role="menuitem">
-              <span class="lang-flag">🇬🇧</span>
-              <span class="lang-bullet"></span>
-              <span class="lang-option-label">
-                English
-                <small>English</small>
-              </span>
-            </button>
+            <div class="lang-dropdown-menu" id="langMenuMobile" role="menu">
+              <button type="button" class="lang-option active" data-lang="no" role="menuitem">
+                <span class="lang-flag">🇳🇴</span>
+                <span class="lang-bullet"></span>
+                <span class="lang-option-label">
+                  Norsk Bokmål
+                  <small>Bokmål</small>
+                </span>
+              </button>
+
+              <button type="button" class="lang-option" data-lang="nn" role="menuitem">
+                <span class="lang-flag">🇳🇴</span>
+                <span class="lang-bullet"></span>
+                <span class="lang-option-label">
+                  Norsk Nynorsk
+                  <small>Nynorsk</small>
+                </span>
+              </button>
+
+              <button type="button" class="lang-option" data-lang="en" role="menuitem">
+                <span class="lang-flag">🇬🇧</span>
+                <span class="lang-bullet"></span>
+                <span class="lang-option-label">
+                  English
+                  <small>English</small>
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -1201,11 +1368,76 @@
       }
     };
 
-    const langSwitcher = document.getElementById("langSwitcher");
-    const langToggle = document.getElementById("langToggle");
-    const currentLanguageLabel = document.getElementById("currentLanguageLabel");
-    const currentLanguageFlag = document.getElementById("currentLanguageFlag");
-    const langOptions = document.querySelectorAll(".lang-option");
+    const navbar = document.getElementById("navbar");
+    const menuToggle = document.getElementById("menuToggle");
+
+    function setupLanguageSwitcher({
+      switcherId,
+      toggleId,
+      labelId,
+      flagId,
+      menuId
+    }) {
+      const switcher = document.getElementById(switcherId);
+      const toggle = document.getElementById(toggleId);
+      const label = document.getElementById(labelId);
+      const flag = document.getElementById(flagId);
+      const menu = document.getElementById(menuId);
+      const options = switcher.querySelectorAll(".lang-option");
+
+      function closeMenu() {
+        switcher.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+
+      function openMenu() {
+        switcher.classList.add("open");
+        toggle.setAttribute("aria-expanded", "true");
+      }
+
+      toggle.addEventListener("click", () => {
+        const isOpen = switcher.classList.contains("open");
+        document.querySelectorAll(".lang-switcher.open").forEach((item) => {
+          item.classList.remove("open");
+          const btn = item.querySelector(".lang-dropdown-toggle");
+          if (btn) btn.setAttribute("aria-expanded", "false");
+        });
+        if (!isOpen) openMenu();
+      });
+
+      options.forEach((option) => {
+        option.addEventListener("click", () => {
+          setLanguage(option.dataset.lang);
+          closeAllLanguageMenus();
+        });
+      });
+
+      return { switcher, toggle, label, flag, menu, options, closeMenu };
+    }
+
+    function closeAllLanguageMenus() {
+      document.querySelectorAll(".lang-switcher.open").forEach((item) => {
+        item.classList.remove("open");
+        const btn = item.querySelector(".lang-dropdown-toggle");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      });
+    }
+
+    const desktopLang = setupLanguageSwitcher({
+      switcherId: "langSwitcherDesktop",
+      toggleId: "langToggleDesktop",
+      labelId: "currentLanguageLabelDesktop",
+      flagId: "currentLanguageFlagDesktop",
+      menuId: "langMenuDesktop"
+    });
+
+    const mobileLang = setupLanguageSwitcher({
+      switcherId: "langSwitcherMobile",
+      toggleId: "langToggleMobile",
+      labelId: "currentLanguageLabelMobile",
+      flagId: "currentLanguageFlagMobile",
+      menuId: "langMenuMobile"
+    });
 
     function setLanguage(lang) {
       const dictionary = translations[lang];
@@ -1225,51 +1457,55 @@
         }
       });
 
-      currentLanguageLabel.textContent = meta.label;
-      currentLanguageFlag.textContent = meta.flag;
-
-      langOptions.forEach((option) => {
-        option.classList.toggle("active", option.dataset.lang === lang);
+      [desktopLang, mobileLang].forEach((instance) => {
+        instance.label.textContent = meta.label;
+        instance.flag.textContent = meta.flag;
+        instance.options.forEach((option) => {
+          option.classList.toggle("active", option.dataset.lang === lang);
+        });
       });
 
       localStorage.setItem("ominfraLanguage", lang);
     }
 
-    function closeLanguageMenu() {
-      langSwitcher.classList.remove("open");
-      langToggle.setAttribute("aria-expanded", "false");
+    function closeMobileMenu() {
+      navbar.classList.remove("mobile-open");
+      menuToggle.setAttribute("aria-expanded", "false");
     }
 
-    function openLanguageMenu() {
-      langSwitcher.classList.add("open");
-      langToggle.setAttribute("aria-expanded", "true");
+    function openMobileMenu() {
+      navbar.classList.add("mobile-open");
+      menuToggle.setAttribute("aria-expanded", "true");
     }
 
-    langToggle.addEventListener("click", () => {
-      const isOpen = langSwitcher.classList.contains("open");
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navbar.classList.contains("mobile-open");
       if (isOpen) {
-        closeLanguageMenu();
+        closeMobileMenu();
       } else {
-        openLanguageMenu();
+        openMobileMenu();
       }
     });
 
-    langOptions.forEach((option) => {
-      option.addEventListener("click", () => {
-        setLanguage(option.dataset.lang);
-        closeLanguageMenu();
+    document.querySelectorAll('.mobile-menu-links a, .nav-links a[href^="#"]').forEach((link) => {
+      link.addEventListener("click", () => {
+        closeMobileMenu();
       });
     });
 
     document.addEventListener("click", (event) => {
-      if (!langSwitcher.contains(event.target)) {
-        closeLanguageMenu();
+      if (
+        !desktopLang.switcher.contains(event.target) &&
+        !mobileLang.switcher.contains(event.target)
+      ) {
+        closeAllLanguageMenus();
       }
     });
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
-        closeLanguageMenu();
+        closeAllLanguageMenus();
+        closeMobileMenu();
       }
     });
 
