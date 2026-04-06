@@ -75,7 +75,7 @@
     }
 
     .nav-inner {
-      min-height: 120px;
+      min-height: 132px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -85,14 +85,14 @@
     }
 
     .navbar.scrolled .nav-inner {
-      min-height: 94px;
+      min-height: 104px;
     }
 
     .brand {
       display: flex;
       align-items: center;
       flex-shrink: 0;
-      padding: 4px 0;
+      padding: 6px 0;
       position: relative;
     }
 
@@ -103,11 +103,11 @@
     .brand::before {
       content: "";
       position: absolute;
-      left: 18px;
+      left: 44px;
       top: 50%;
       transform: translateY(-50%);
-      width: 120px;
-      height: 120px;
+      width: 170px;
+      height: 170px;
       border-radius: 999px;
       background: radial-gradient(
         circle,
@@ -115,7 +115,7 @@
         rgba(200,168,107,0.10) 35%,
         rgba(200,168,107,0.00) 72%
       );
-      filter: blur(10px);
+      filter: blur(12px);
       pointer-events: none;
       z-index: 0;
       transition: opacity 0.25s ease, transform 0.25s ease;
@@ -127,7 +127,7 @@
     }
 
     .site-logo {
-      height: 110px;
+      height: 126px;
       width: auto;
       display: block;
       position: relative;
@@ -151,7 +151,7 @@
     }
 
     .navbar.scrolled .site-logo {
-      height: 92px;
+      height: 102px;
     }
 
     .nav-right {
@@ -432,14 +432,14 @@
         linear-gradient(rgba(20, 32, 51, 0.84), rgba(20, 32, 51, 0.80)),
         linear-gradient(135deg, #334155, #0f172a);
       color: #fff;
-      padding: 96px 0 86px;
+      padding: 92px 0 86px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.9fr;
-      gap: 36px;
-      align-items: center;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 82px;
+      align-items: start;
     }
 
     .eyebrow {
@@ -455,42 +455,21 @@
     .hero h1 {
       font-size: clamp(36px, 6vw, 60px);
       line-height: 1.05;
-      margin: 0 0 18px;
+      margin: 0 0 22px;
     }
 
     .hero p {
       font-size: 19px;
       color: rgba(255,255,255,0.88);
       max-width: 720px;
-      margin: 0 0 28px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 32px;
-    }
-
-    .button-secondary {
-      display: inline-block;
-      border: 1px solid rgba(255,255,255,0.22);
-      color: #fff;
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-weight: 700;
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .button-secondary:hover {
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(255,255,255,0.32);
+      margin: 0 0 34px;
     }
 
     .hero-points {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
+      max-width: 760px;
     }
 
     .hero-point {
@@ -506,12 +485,18 @@
       margin-bottom: 4px;
     }
 
+    .hero-card-wrap {
+      padding-top: 58px;
+    }
+
     .hero-card {
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 20px;
-      padding: 28px;
+      padding: 30px;
       box-shadow: var(--shadow);
+      max-width: 500px;
+      margin-left: auto;
     }
 
     .hero-card h2 {
@@ -707,6 +692,16 @@
       flex-wrap: wrap;
     }
 
+    @media (max-width: 1180px) {
+      .hero-grid {
+        gap: 56px;
+      }
+
+      .hero-card {
+        max-width: 460px;
+      }
+    }
+
     @media (max-width: 1080px) {
       .nav-links {
         gap: 16px;
@@ -721,11 +716,11 @@
       }
 
       .site-logo {
-        height: 98px;
+        height: 112px;
       }
 
       .navbar.scrolled .site-logo {
-        height: 84px;
+        height: 92px;
       }
     }
 
@@ -737,8 +732,21 @@
         grid-template-columns: 1fr;
       }
 
+      .hero-grid {
+        gap: 34px;
+      }
+
       .hero-points {
         grid-template-columns: 1fr;
+      }
+
+      .hero-card-wrap {
+        padding-top: 0;
+      }
+
+      .hero-card {
+        margin-left: 0;
+        max-width: 100%;
       }
 
       .nav-links {
@@ -825,11 +833,11 @@
       }
 
       .site-logo {
-        height: 78px;
+        height: 88px;
       }
 
       .navbar.scrolled .site-logo {
-        height: 70px;
+        height: 74px;
       }
 
       .hero p,
@@ -842,9 +850,9 @@
       }
 
       .brand::before {
-        width: 90px;
-        height: 90px;
-        left: 10px;
+        width: 100px;
+        height: 100px;
+        left: 14px;
       }
     }
   </style>
@@ -861,7 +869,6 @@
           <a href="#tjenester" data-i18n="navServices">Tjenester</a>
           <a href="#om-oss" data-i18n="navAbout">Om oss</a>
           <a href="#arbeidsform" data-i18n="navApproach">Arbeidsform</a>
-          <a href="#kontakt" data-i18n="navContact">Kontakt</a>
           <a class="cta-button" href="#kontakt" data-i18n="navCta">Ta kontakt</a>
 
           <div class="lang-switcher" id="langSwitcherDesktop">
@@ -935,7 +942,6 @@
           <a href="#tjenester" data-i18n="navServices">Tjenester</a>
           <a href="#om-oss" data-i18n="navAbout">Om oss</a>
           <a href="#arbeidsform" data-i18n="navApproach">Arbeidsform</a>
-          <a href="#kontakt" data-i18n="navContact">Kontakt</a>
           <a class="cta-button" href="#kontakt" data-i18n="navCta">Ta kontakt</a>
         </div>
 
@@ -1000,11 +1006,6 @@
           OMinfra hjelper aktører innen veg og VA med kontroll, kvalitetssikring, dokumentstruktur og smartere arbeidsflyt. Vi kombinerer fagforståelse med digitale arbeidsmetoder som gir bedre oversikt, mindre manuelt arbeid og mer presise leveranser.
         </p>
 
-        <div class="hero-actions">
-          <a class="cta-button" href="#kontakt" data-i18n="heroCtaPrimary">Be om kontakt</a>
-          <a class="button-secondary" href="#tjenester" data-i18n="heroCtaSecondary">Se hva vi kan hjelpe med</a>
-        </div>
-
         <div class="hero-points">
           <div class="hero-point">
             <strong data-i18n="point1Title">Oversikt</strong>
@@ -1021,14 +1022,16 @@
         </div>
       </div>
 
-      <div class="hero-card">
-        <h2 data-i18n="heroCardTitle">Typiske behov vi kan bidra med</h2>
-        <ul>
-          <li data-i18n="heroCardItem1">Gjennomgang, strukturering og kontroll av teknisk underlag</li>
-          <li data-i18n="heroCardItem2">Rådgivning knyttet til veg, VA og praktisk prosjektgjennomføring</li>
-          <li data-i18n="heroCardItem3">Digitale arbeidsmetoder som gir bedre flyt og mindre manuelt arbeid</li>
-          <li data-i18n="heroCardItem4">Bistand som kan utføres effektivt fra hjemmekontor eller eksternt</li>
-        </ul>
+      <div class="hero-card-wrap">
+        <div class="hero-card">
+          <h2 data-i18n="heroCardTitle">Typiske behov vi kan bidra med</h2>
+          <ul>
+            <li data-i18n="heroCardItem1">Gjennomgang, strukturering og kontroll av teknisk underlag</li>
+            <li data-i18n="heroCardItem2">Rådgivning knyttet til veg, VA og praktisk prosjektgjennomføring</li>
+            <li data-i18n="heroCardItem3">Digitale arbeidsmetoder som gir bedre flyt og mindre manuelt arbeid</li>
+            <li data-i18n="heroCardItem4">Bistand som kan utføres effektivt fra hjemmekontor eller eksternt</li>
+          </ul>
+        </div>
       </div>
     </div>
   </header>
@@ -1207,13 +1210,10 @@
         navServices: "Tjenester",
         navAbout: "Om oss",
         navApproach: "Arbeidsform",
-        navContact: "Kontakt",
         navCta: "Ta kontakt",
         eyebrow: "Veg · VA · Kontroll · Dokumentasjon · Smarte løsninger",
         heroTitle: "Digital rådgivning og kontroll for veg- og VA-prosjekter",
         heroText: "OMinfra hjelper aktører innen veg og VA med kontroll, kvalitetssikring, dokumentstruktur og smartere arbeidsflyt. Vi kombinerer fagforståelse med digitale arbeidsmetoder som gir bedre oversikt, mindre manuelt arbeid og mer presise leveranser.",
-        heroCtaPrimary: "Be om kontakt",
-        heroCtaSecondary: "Se hva vi kan hjelpe med",
         point1Title: "Oversikt",
         point1Text: "Bedre struktur på dokumentasjon og underlag",
         point2Title: "Kontroll",
@@ -1281,13 +1281,10 @@
         navServices: "Tenester",
         navAbout: "Om oss",
         navApproach: "Arbeidsform",
-        navContact: "Kontakt",
         navCta: "Ta kontakt",
         eyebrow: "Veg · VA · Kontroll · Dokumentasjon · Smarte løysingar",
         heroTitle: "Digital rådgiving og kontroll for veg- og VA-prosjekt",
         heroText: "OMinfra hjelper aktørar innan veg og VA med kontroll, kvalitetssikring, dokumentstruktur og smartare arbeidsflyt. Vi kombinerer fagforståing med digitale arbeidsmetodar som gir betre oversikt, mindre manuelt arbeid og meir presise leveransar.",
-        heroCtaPrimary: "Ta kontakt",
-        heroCtaSecondary: "Sjå kva vi kan hjelpe med",
         point1Title: "Oversikt",
         point1Text: "Betre struktur på dokumentasjon og underlag",
         point2Title: "Kontroll",
@@ -1355,13 +1352,10 @@
         navServices: "Services",
         navAbout: "About",
         navApproach: "Approach",
-        navContact: "Contact",
         navCta: "Get in touch",
         eyebrow: "Road · Water · Control · Documentation · Smart solutions",
         heroTitle: "Digital consulting and control for road and water infrastructure projects",
         heroText: "OMinfra supports road and water infrastructure stakeholders with control, quality assurance, documentation structure and smarter workflows. We combine industry understanding with digital working methods that create better overview, less manual work and more precise deliveries.",
-        heroCtaPrimary: "Contact us",
-        heroCtaSecondary: "See how we can help",
         point1Title: "Overview",
         point1Text: "Better structure for documentation and technical basis",
         point2Title: "Control",
