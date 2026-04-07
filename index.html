@@ -108,6 +108,10 @@
       text-decoration: none;
       position: relative;
       z-index: 1;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
     }
 
     .brand::before {
@@ -703,6 +707,49 @@
       flex-wrap: wrap;
     }
 
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .image-modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .image-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(8, 12, 20, 0.78);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .image-modal-content {
+      max-width: min(92vw, 1100px);
+      max-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-modal-img {
+      max-width: 100%;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      display: block;
+      border-radius: 18px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    }
+
     @media (max-width: 1180px) {
       .hero-grid {
         gap: 56px;
@@ -889,9 +936,9 @@
   <nav class="navbar" id="navbar">
     <div class="container nav-inner">
       <div class="brand brand-with-logo">
-        <a href="ominfra-logo.png.png" target="_blank" rel="noopener noreferrer" class="brand-logo-link">
+        <button type="button" class="brand-logo-link" id="logoModalOpen" aria-label="Vis logo i stor størrelse">
           <img src="ominfra-navbar-logo.png" alt="OMinfra logo" class="site-logo">
-        </a>
+        </button>
       </div>
 
       <div class="nav-right">
@@ -1225,6 +1272,14 @@
     </div>
   </footer>
 
+  <div class="image-modal" id="imageModal" aria-hidden="true">
+    <div class="image-modal-backdrop" id="imageModalBackdrop">
+      <div class="image-modal-content" role="dialog" aria-modal="true" aria-label="OMinfra logo">
+        <img src="ominfra-logo.png.png" alt="OMinfra logo stor versjon" class="image-modal-img">
+      </div>
+    </div>
+  </div>
+
   <script>
     const languageMeta = {
       no: { label: "Norsk Bokmål", flag: "🇳🇴" },
@@ -1337,7 +1392,7 @@
         aboutTitle: "Om OMinfra",
         aboutIntro: "OMinfra er utvikla for å levere digital støtte til infrastrukturprosjekt der kontroll, struktur og fagleg oversikt er avgjerande.",
         aboutPanelTitle: "Fagforståing kombinert med digitale arbeidsmetodar",
-        aboutPanelText: "Vi arbeider i skjeringspunktet mellom rådgiving, kontroll og digital forbetring for aktørar innan veg og VA. Mange oppgåver kan løysast effektivt frå PC, så lenge arbeidet byggjer på reell fagforståing, struktur og innsikt i korleis prosjekt faktisk blir gjennomførte.",
+        aboutPanelText: "Vi jobber i skjeringspunktet mellom rådgiving, kontroll og digital forbetring for aktørar innan veg og VA. Mange oppgåver kan løysast effektivt frå PC, så lenge arbeidet byggjer på reell fagforståing, struktur og innsikt i korleis prosjekt faktisk blir gjennomførte.",
         aboutList1: "Fokus på løysingar som er nyttige i faktisk drift",
         aboutList2: "Arbeid som kan utførast effektivt eksternt",
         aboutList3: "Kombinasjon av struktur, kontroll og forbetring",
@@ -1449,6 +1504,30 @@
 
     const navbar = document.getElementById("navbar");
     const menuToggle = document.getElementById("menuToggle");
+    const logoModalOpen = document.getElementById("logoModalOpen");
+    const imageModal = document.getElementById("imageModal");
+    const imageModalBackdrop = document.getElementById("imageModalBackdrop");
+
+    function openImageModal() {
+      imageModal.classList.add("open");
+      imageModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeImageModal() {
+      imageModal.classList.remove("open");
+      imageModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    logoModalOpen.addEventListener("click", openImageModal);
+
+    imageModalBackdrop.addEventListener("click", (event) => {
+      const content = imageModalBackdrop.querySelector(".image-modal-content");
+      if (!content.contains(event.target)) {
+        closeImageModal();
+      }
+    });
 
     function setupLanguageSwitcher({ switcherId, toggleId, labelId, flagId }) {
       const switcher = document.getElementById(switcherId);
@@ -1485,7 +1564,7 @@
         });
       });
 
-      return { switcher, toggle, label, flag, options };
+      return { switcher, toggle, label, flag, options, closeMenu };
     }
 
     function closeAllLanguageMenus() {
@@ -1575,6 +1654,7 @@
       if (event.key === "Escape") {
         closeAllLanguageMenus();
         closeMobileMenu();
+        closeImageModal();
       }
     });
 
