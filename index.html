@@ -97,7 +97,9 @@
     }
 
     .brand-with-logo {
-      gap: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .brand::before {
@@ -134,12 +136,12 @@
       z-index: 1;
       filter:
         drop-shadow(0 10px 20px rgba(0,0,0,0.28))
-        drop-shadow(0 0 16px rgba(200,168,107,0.08));
+        drop-shadow(0 0 20px rgba(200,168,107,0.12));
       transition:
         transform 0.22s ease,
         filter 0.22s ease,
         opacity 0.22s ease,
-        height 0.25s ease;
+          height 0.25s ease;
       transform-origin: left center;
     }
 
@@ -861,8 +863,10 @@
   <nav class="navbar" id="navbar">
     <div class="container nav-inner">
       <div class="brand brand-with-logo">
-        <img src="ominfra-navbar-logo.png" alt="OMinfra logo" class="site-logo">
-      </div>
+        <a href="ominfra-navbar-logo.png" target="_blank" rel="noopener noreferrer" class="brand-logo-link">
+          <img src="ominfra-navbar-logo.png" alt="OMinfra logo" class="site-logo">
+      </a>
+    </div>
 
       <div class="nav-right">
         <div class="nav-links">
