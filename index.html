@@ -141,21 +141,16 @@
     }
 
     .site-logo {
-      height: 240px;
+      height: 260px;
       width: auto;
       display: block;
-      position: relative;
-      z-index: 1;
-      filter:
-        drop-shadow(0 10px 20px rgba(0,0,0,0.28))
-        drop-shadow(0 0 20px rgba(200,168,107,0.12));
-      transition:
-        transform 0.22s ease,
-        filter 0.22s ease,
-        opacity 0.22s ease,
-        height 0.25s ease;
-      transform-origin: left center;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.45));
+      transition: transform 0.3s ease;
     }
+
+.site-logo:hover {
+  transform: scale(1.05);
+}
 
     .brand:hover .site-logo {
       transform: translateY(-1px) scale(1.025);
@@ -937,7 +932,7 @@
     <div class="container nav-inner">
       <div class="brand brand-with-logo">
         <button type="button" class="brand-logo-link" id="logoModalOpen" aria-label="Vis logo i stor størrelse">
-          <img src="ominfra-logo-01.png" alt="OMinfra logo" class="site-logo">
+          <img src="OMinfra-logo-01.png" alt="OMinfra logo" class="site-logo">
         </button>
       </div>
 
